@@ -14,7 +14,7 @@ Linux:
 ```mv origen/OrdenarNumeros.jar destino/OrdenarNumeros.jar```
 
 ## Ejemplo de generación de los jar
-Haciendo click sobre el proyecto, seleccionar Export - Runnable JAR file - Finish
+Haciendo click sobre el main, seleccionar Export - Runnable JAR file - Finish
 ![export](link-to-image)
 ![RunnableJarFile](link-to-image)
 ![Finish](link-to-image)
