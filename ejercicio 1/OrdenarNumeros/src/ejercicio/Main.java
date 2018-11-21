@@ -1,5 +1,4 @@
-package primeraParte;
-
+package ejercicio;
 
 import java.io.BufferedReader;
 import java.io.IOException;

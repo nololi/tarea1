@@ -1,4 +1,4 @@
-package segundaParte;
+package ejercicio;
 
 public class Main {
 
