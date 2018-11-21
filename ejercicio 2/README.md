@@ -21,7 +21,7 @@ Haciendo click sobre el main, seleccionar Export - Runnable JAR file - Finish
 ![Finish](https://raw.githubusercontent.com/nololi/tarea1/master/14.png)
 
 ## Ejemplo de uso   
-Abrir la consola de windows  y ubicarse en dónde se ubican
+Abrir la consola de windows  y ubicarse en dónde se ubican  
 ![WindowsShell](https://raw.githubusercontent.com/nololi/tarea1/master/15.png)
 
 Redigir la salida de Lenguaje.jar a Colaborar.jar  

@@ -1,16 +1,10 @@
 package src;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
 
 public class Colaborar {
 
 	public static void main(String[] args) {
 		Process nuevoProceso;
-
-		
 		try {
 			for (int i = 1; i <= 11; i++) {
 				// palabras y fichero jar que ejecuto

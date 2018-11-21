@@ -1,12 +1,17 @@
 package src;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileLock;
 
 public class Lenguaje {
 	private static void createNewFile(File fichero) {
@@ -22,6 +27,7 @@ public class Lenguaje {
 		/*
 		 * Variables que voy a necesitar
 		 */
+		int proceso = 0;
 		int numeroPalabras = 0;
 		String nombreFichero = null;
 		String delim = "";
@@ -29,38 +35,32 @@ public class Lenguaje {
 		File dir;
 		FileReader leer = null;
 		String linea = "";
-		FileWriter escribir = null;
-		PrintWriter pw = null;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// generar de forma aleatoria el número indicado por entrada
-		try {
-			String data;
-			if(args.length!=0) {
-				data = args[0];
-				System.out.println("args");
-			}else {
-				System.out.println("read");
-				data = br.readLine();
+		if (args.length > 0) {
+			proceso = Integer.parseInt(args[0]); // proceso número
+			// nombre fichero que he señalado
+			try {
+				nombreFichero = args[1];
+			} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+				System.out.println("Error no se ha introducido un número o error de E/S, causa :  " + e.getCause());
+				System.exit(1);// salir si no es entero o error E/S
 			}
-			numeroPalabras = Integer.parseInt(data);
-		} catch (NumberFormatException | IOException e) {
-			System.out.println("Error no se ha introducido un número o error de E/S, causa :  " + e.getCause());
-			System.exit(1);// salir si no es entero o error E/S
+			try {
+				// Redirección salida y error estándar
+				PrintStream ps = new PrintStream(
+						new BufferedOutputStream(new FileOutputStream(new File("javalog.txt"), true)), true);
+				System.setOut(ps);
+				System.setErr(ps);
+			} catch (Exception e) {
+				System.err.println("Error redirección " + e.getCause());
+			}
+		}else {
+			System.out.println("vacío");
 		}
 
-		// nombre fichero que he señalado
-		try {
-			
-			if(args.length!=0) {
-				nombreFichero = args[1];
-			}else {
-				nombreFichero = br.readLine();
-			}
-		} catch (NumberFormatException | IOException e) {
-			System.out.println("Error no se ha introducido un número o error de E/S, causa :  " + e.getCause());
-			System.exit(1);// salir si no es entero o error E/S
-		}
+		
 
 		/*
 		 * En este paso genero las palabras aleatorias. Establezco como condición
@@ -74,7 +74,6 @@ public class Lenguaje {
 				texto += (char) ((int) (Math.random() * 26 + 65));
 			}
 			delim = "\r\n"; // salto de línea
-			System.out.println(texto);
 		}
 
 		/*
@@ -108,14 +107,11 @@ public class Lenguaje {
 			try {
 				leer = new FileReader(fichero);
 				br = new BufferedReader(leer);
-				System.out.println(br);
 				String lineatmp = "";
 				while ((lineatmp = br.readLine()) != null) {
-					System.out.println("dentro readLine");
 					linea += lineatmp.toString();
 					linea += "\r\n";
 				}
-				System.out.println("lineas en fichero " + linea);
 				leer.close();
 			} catch (Exception e) {
 				System.out.println("Error al leer del fichero" + e.getMessage());
@@ -124,25 +120,40 @@ public class Lenguaje {
 
 		}
 
-		/*
-		 * guardo el contenido en el fichero
-		 */
-		try {
-			escribir = new FileWriter(nombreFichero);
-			pw = new PrintWriter(escribir);
-			pw.println(linea + texto);
-		} catch (IOException e) {
-			System.out.println("Error E/S");
-			System.exit(1); // si hay error finalizamos
-		} finally {
+		//Escribo en el fichero
+		File archivo = null;
+		RandomAccessFile raf = null;
+		FileLock bloqueo = null;
+		archivo = new File(nombreFichero);
+		int i = 0;
+		while (i < 100) {// aumentamos situaciones concurrencia
 			try {
-				// cerrar fichero
-				if (escribir != null) {
-					escribir.close();
+				raf = new RandomAccessFile(archivo, "rwd"); // Abrimos el fichero
+				// ***************
+				// Sección crítica
+					bloqueo = raf.getChannel().lock();
+					// bloqueamos el canal de acceso al fichero. Obtenemos el objeto que
+					// representa el bloqueo para después poder liberarlo
+					System.out.println("Proceso  activo " + proceso);
+					// Lectura del fichero, me da igual que esté o no vacío
+					raf.writeUTF(texto); // escribimos el valor				
+					i++;
+					bloqueo.release(); // Liberamos el bloqueo del canal del fichero
+					bloqueo = null;
+				// Fin sección crítica
+				// *******************
+				Thread.sleep(3000); // Simulamos tiempo de creación del dato
+			} catch (Exception e) {
+				System.err.println("error " + e.toString());
+			} finally {
+				try {
+					if (null != raf)
+						raf.close();
+				} catch (Exception e2) {
+					System.err.println("Error al cerrar el fichero.");
+					System.err.println(e2.toString());
+					System.exit(1); // Si hay error, finalizamos
 				}
-			} catch (IOException e) {
-				System.out.println("Error al cerrar el fichero ");
-				System.exit(1); // si hay error finalizamos
 			}
 		}
 
