@@ -21,7 +21,7 @@ Haciendo click sobre el main, seleccionar Export - Runnable JAR file - Finish
 ![Finish](https://raw.githubusercontent.com/nololi/tarea1/master/4.png)
 
 ## Ejemplo de uso   
-Abrir la consola de windows  
+Abrir la consola de windows  y ubicarse en donde se ubican
 ![WindowsShell](https://raw.githubusercontent.com/nololi/tarea1/master/5.png)
 
 Redigir la salida de Aleatorios.jar a OrdenarNumeros.jar  
