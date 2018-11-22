@@ -6,11 +6,11 @@ public class Colaborar {
 	public static void main(String[] args) {
 		Process nuevoProceso;
 		try {
-			for (int i = 1; i <= 11; i++) {
+			for (int i = 1; i < 11; i++) {
 				// palabras y fichero jar que ejecuto
 				nuevoProceso = Runtime.getRuntime()
 						.exec("java -jar " + "Lenguaje.jar " + (i * 10) + " " + "miFicheroDeLenguaje.txt");
-				System.out.println("proceso creado " + nuevoProceso);
+				System.out.println("proceso creado " + nuevoProceso + " palabras " + i*10);
 			}
 
 		} catch (SecurityException ex) {

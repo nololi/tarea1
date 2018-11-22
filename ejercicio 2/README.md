@@ -24,7 +24,7 @@ Haciendo click sobre el main, seleccionar Export - Runnable JAR file - Finish
 Abrir la consola de windows  y ubicarse en dónde se ubican  
 ![WindowsShell](https://raw.githubusercontent.com/nololi/tarea1/master/15.png)
 
-Redigir la salida de Lenguaje.jar a Colaborar.jar  
+Ejecutar Colaborar.jar y comprobar que se crean 550 líneas 
 ![RedirectOutput](https://raw.githubusercontent.com/nololi/tarea1/master/16.png)
 
 ## Configuración de desarrollo
