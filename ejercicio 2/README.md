@@ -25,7 +25,7 @@ Abrir la consola de windows  y ubicarse en dónde se ubican
 ![WindowsShell](https://raw.githubusercontent.com/nololi/tarea1/master/15.png)
 
 Ejecutar Colaborar.jar y comprobar que se crean 550 líneas 
-![RedirectOutput](https://raw.githubusercontent.com/nololi/tarea1/master/16.png)
+![RedirectOutput](https://raw.githubusercontent.com/nololi/tarea1/prueba/16.png)
 
 ## Configuración de desarrollo
 Requiere instalación de Java 8.
