@@ -21,8 +21,9 @@ Haciendo click sobre el main, seleccionar Export - Runnable JAR file - Finish
 ![Finish](../4.png)
 
 ## Ejemplo de uso   
-Abrir la consola de windows  y ubicarse en donde se ubican  
+Abrir la consola de windows  y ubicarse en su directorio
 ![WindowsShell](../5.png)
+![SortNumbers](../1.png)
 
 Redigir la salida de Aleatorios.jar a OrdenarNumeros.jar  
 ![RedirectOutput](../6.png)
