@@ -1,6 +1,6 @@
 # Ordenar números aleatorios 
 Aplicación que genera cuarenta números aleatorios entre 0  y 100 y los ordena. 
-![SortNumbers](https://raw.githubusercontent.com/nololi/tarea1/master/1.png)
+![SortNumbers](../1.png)
 ## Instalación 
 
 Windows:
@@ -16,16 +16,16 @@ Linux:
 ## Ejemplo de generación de los jar
 Haciendo click sobre el main, seleccionar Export - Runnable JAR file - Finish
 
-![export](https://raw.githubusercontent.com/nololi/tarea1/master/2.png)  
-![RunnableJarFile](https://raw.githubusercontent.com/nololi/tarea1/master/3.png)  
-![Finish](https://raw.githubusercontent.com/nololi/tarea1/master/4.png)
+![export](../2.png)  
+![RunnableJarFile](../3.png)  
+![Finish](../4.png)
 
 ## Ejemplo de uso   
 Abrir la consola de windows  y ubicarse en donde se ubican  
-![WindowsShell](https://raw.githubusercontent.com/nololi/tarea1/master/5.png)
+![WindowsShell](../5.png)
 
 Redigir la salida de Aleatorios.jar a OrdenarNumeros.jar  
-![RedirectOutput](https://raw.githubusercontent.com/nololi/tarea1/master/6.png)
+![RedirectOutput](../6.png)
 
 ## Configuración de desarrollo
 Requiere instalación de Java 8.
